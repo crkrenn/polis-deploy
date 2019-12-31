@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  node:
+    image: 301400261185.dkr.ecr.us-east-1.amazonaws.com/test-app
+    ports:
+      - 3000:3000
