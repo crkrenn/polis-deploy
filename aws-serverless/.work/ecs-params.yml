@@ -7,12 +7,12 @@ task_definition:
     mem_limit: 0.5GB
     cpu_limit: 256
 
-# run_params:
-#   network_configuration:
-#     awsvpc_configuration:
-#       subnets:
-#         - "subnet ID 1"
-#         - "subnet ID 2"
-#       security_groups:
-#         - "security group ID"
-#       assign_public_ip: ENABLED
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-09d3630f0bd1e0f8d
+        - subnet-0422d1ffc76459476
+      security_groups:
+        - sg-0ef8fb2562d3bd1c0
+      assign_public_ip: ENABLED
