@@ -1,18 +1,18 @@
 version: 1
 
 task_definition:
-  task_execution_role: fargate-test-role
+  task_execution_role: $FARGATE_ROLE_NAME
   ecs_network_mode: awsvpc
   task_size:
-    mem_limit: 0.5GB
-    cpu_limit: 256
+    mem_limit: $CONTAINER_MEMORY_LIMIT
+    cpu_limit: $CONTAINER_CPU_LIMIT
 
 run_params:
   network_configuration:
     awsvpc_configuration:
       subnets:
-        - subnet-0e605036a1d5eea68
-        - subnet-0eea6f098cf59d51b
+        - $SUBNET_ID_1
+        - $SUBNET_ID_2
       security_groups:
-        - sg-068ba25c11afddb34
+        - $GROUP_ID
       assign_public_ip: ENABLED
