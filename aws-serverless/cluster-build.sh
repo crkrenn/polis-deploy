@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source ./config/.env
 
 REGION=$(aws configure get region)
 CF_STACK_NAME=amazon-ecs-cli-setup-$CLUSTER_NAME
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 
 # ensure IAM role exists
 aws iam get-role --role-name $FARGATE_ROLE_NAME --output text --query Role.RoleName
@@ -33,6 +34,10 @@ aws ec2 authorize-security-group-ingress --group-id $GROUP_ID --protocol tcp --p
 aws ec2 authorize-security-group-ingress --group-id $GROUP_ID --protocol tcp --port 5000 --cidr 0.0.0.0/0 --region $REGION
 aws ec2 authorize-security-group-ingress --group-id $GROUP_ID --protocol tcp --port 5001 --cidr 0.0.0.0/0 --region $REGION
 aws ec2 authorize-security-group-ingress --group-id $GROUP_ID --protocol tcp --port 5002 --cidr 0.0.0.0/0 --region $REGION
+
+# write image rpository details to docker compose file
+AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID \
+envsubst < ./config/docker-compose.template.yml > ./docker-compose.yml
 
 # write cluster config details to ECS parameters file
 FARGATE_ROLE_NAME=$FARGATE_ROLE_NAME \
