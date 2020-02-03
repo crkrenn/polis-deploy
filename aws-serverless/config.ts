@@ -1,6 +1,6 @@
 export default {
   cluster: {
-    name: "polis-fargate-cluster",
+    name: "polis-cluster",
     description: "Polis Fargate Cluster",
   },
 }

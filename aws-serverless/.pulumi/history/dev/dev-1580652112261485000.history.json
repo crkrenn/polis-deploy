@@ -1,0 +1,26 @@
+{
+    "kind": "update",
+    "startTime": 1580650114,
+    "message": "fargate deployment procedures",
+    "environment": {
+        "git.author": "David Nadaraia",
+        "git.author.email": "david.nadaraia@gmail.com",
+        "git.committer": "David Nadaraia",
+        "git.committer.email": "david.nadaraia@gmail.com",
+        "git.dirty": "true",
+        "git.head": "b9326cca4719ac27f036e9db7829026f8f762628",
+        "git.headName": "refs/heads/master",
+        "vcs.kind": "github.com",
+        "vcs.owner": "crkrenn",
+        "vcs.repo": "polis-deploy"
+    },
+    "config": {
+        "aws:region": "us-east-1"
+    },
+    "result": "failed",
+    "endTime": 1580652112,
+    "resourceChanges": {
+        "create": 112,
+        "same": 1
+    }
+}

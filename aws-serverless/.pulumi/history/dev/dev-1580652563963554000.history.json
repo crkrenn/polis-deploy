@@ -1,0 +1,25 @@
+{
+    "kind": "destroy",
+    "startTime": 1580652364,
+    "message": "switch AWS deployment to Pulumi CLI",
+    "environment": {
+        "git.author": "David Nadaraia",
+        "git.author.email": "david.nadaraia@gmail.com",
+        "git.committer": "David Nadaraia",
+        "git.committer.email": "david.nadaraia@gmail.com",
+        "git.dirty": "true",
+        "git.head": "00ca1be8a41ead55916f57fc1457f4b59af8eae5",
+        "git.headName": "refs/heads/master",
+        "vcs.kind": "github.com",
+        "vcs.owner": "crkrenn",
+        "vcs.repo": "polis-deploy"
+    },
+    "config": {
+        "aws:region": "us-east-1"
+    },
+    "result": "succeeded",
+    "endTime": 1580652563,
+    "resourceChanges": {
+        "delete": 113
+    }
+}
