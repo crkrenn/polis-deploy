@@ -1,0 +1,25 @@
+{
+    "kind": "destroy",
+    "startTime": 1580742098,
+    "message": "deploy database container",
+    "environment": {
+        "git.author": "David Nadaraia",
+        "git.author.email": "david.nadaraia@gmail.com",
+        "git.committer": "David Nadaraia",
+        "git.committer.email": "david.nadaraia@gmail.com",
+        "git.dirty": "false",
+        "git.head": "f6f199732acf3ce408089195d748b60f8138e6d0",
+        "git.headName": "refs/heads/master",
+        "vcs.kind": "github.com",
+        "vcs.owner": "crkrenn",
+        "vcs.repo": "polis-deploy"
+    },
+    "config": {
+        "aws:region": "us-east-1"
+    },
+    "result": "succeeded",
+    "endTime": 1580742576,
+    "resourceChanges": {
+        "delete": 85
+    }
+}
