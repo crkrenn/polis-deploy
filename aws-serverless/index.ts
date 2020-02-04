@@ -30,14 +30,31 @@ const nlb = new awsx.lb.NetworkLoadBalancer(`${config.cluster.name}-nlb`, {
 // create public endpoints for services
 const dbPort = nlb.createListener("polis-database", { port: 5432, protocol: "TCP" });
 const serverWeb = alb.createListener("polis-server-web", { port: 5000, protocol: "HTTP", external: true });
-const adminWeb = alb.createListener("polis-admin-web", { port: 5002, protocol: "HTTP", external: true });
 const clientWeb = alb.createListener("polis-client-web", { port: 5001, protocol: "HTTP", external: true });
+const adminWeb = alb.createListener("polis-admin-web", { port: 5002, protocol: "HTTP", external: true });
 
 // build and publish Docker images to a private ECR registry
-const dbImg = awsx.ecs.Image.fromPath("polis-db-img", "./polisDatabase");
-// const serverImg = awsx.ecs.Image.fromPath("polis-server-img", "./polisServer");
-// const adminImg = awsx.ecs.Image.fromPath("polis-admin-img", "./polisClientAdmin");
-// const clientImg = awsx.ecs.Image.fromPath("polis-client-img", "./polisClientParticipation");
+const dbImg = awsx.ecs.Image.fromDockerBuild("polis-db-img", {
+  context: "./polisDatabase",
+  args: {
+    ...config.docker.postgres,
+  }
+});
+
+const serverImg = awsx.ecs.Image.fromDockerBuild("polis-server-img", {
+  context: "./polisServer",
+  args: {
+    ...config.docker.server,
+    host: serverWeb.endpoint.hostname,
+    static_files_host: clientWeb.endpoint.hostname,
+    static_files_admin_host: adminWeb.endpoint.hostname,
+    postgres_host: dbPort.endpoint.hostname,
+    postgres_pwd: config.docker.postgres.pwd,
+  }
+});
+
+// const adminImg = awsx.ecs.Image.fromDockerBuild("polis-admin-img", { context: "./polisClientAdmin" });
+// const clientImg = awsx.ecs.Image.fromDockerBuild("polis-client-img", { context: "./polisClientParticipation" });
 
 // create a Fargate service tasks that can scale out
 const databaseService = new awsx.ecs.FargateService("polis-db-srv", {
@@ -46,25 +63,25 @@ const databaseService = new awsx.ecs.FargateService("polis-db-srv", {
   taskDefinitionArgs: {
     container: {
       image: dbImg,
-      cpu: 102 /*10% of 1024*/,
-      memory: 50 /*MB*/,
+      cpu: 512,
+      memory: 1024,
       portMappings: [dbPort],
     },
   },
 });
 
-// const serverService = new awsx.ecs.FargateService("polis-server-srv", {
-//   cluster,
-//   desiredCount: 1,
-//   taskDefinitionArgs: {
-//     container: {
-//       image: serverImg,
-//       cpu: 102 /*10% of 1024*/,
-//       memory: 50 /*MB*/,
-//       portMappings: [serverWeb],
-//     },
-//   },
-// });
+const serverService = new awsx.ecs.FargateService("polis-server-srv", {
+  cluster,
+  desiredCount: 1,
+  taskDefinitionArgs: {
+    container: {
+      image: serverImg,
+      cpu: 512,
+      memory: 2048,
+      portMappings: [serverWeb],
+    },
+  },
+});
 
 // const adminService = new awsx.ecs.FargateService("polis-admin-srv", {
 //   cluster,
