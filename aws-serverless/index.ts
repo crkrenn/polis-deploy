@@ -20,6 +20,8 @@ const dbService = new ecsPatterns.NetworkLoadBalancedFargateService(stack, "poli
   cpu: 512,
   memoryLimitMiB: 2048,
 
+  cloudMapOptions: { },
+
   taskImageOptions: {
     containerName: "postgres",
     containerPort: config.postgres.port,
@@ -64,6 +66,3 @@ const serverService = new ecsPatterns.ApplicationLoadBalancedFargateService(stac
 serverService.service.connections.allowFromAnyIpv4(
   ec2.Port.tcp(config.server.port)
 );
-
-export const dbEndpoint = dbService.loadBalancer.loadBalancerDnsName;
-export const serverUrl = `http://${serverService.loadBalancer.loadBalancerDnsName}:5000`;
