@@ -1,3 +1,0 @@
-name: polis-fargate-deployment
-runtime: nodejs
-description: Polis deployment to AWS Fargate cluster

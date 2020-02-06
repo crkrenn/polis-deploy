@@ -1,29 +1,27 @@
-### Install and configure AWS CLI
+# Welcome to your CDK TypeScript project!
 
-```
-$ curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-macos.zip" -o "awscliv2.zip"
-$ unzip awscliv2.zip
-$ sudo ./aws/install
-```
+This is a blank project for TypeScript development with CDK.
 
-Export default AWS keys to credentials file:
+The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
-```
-echo [default] >> ~/.aws/credentials
-echo aws_access_key_id = Some_AWS_Access_key >> ~/.aws/credentials
-echo aws_secret_access_key = Some_AWS_Secret_Key >> ~/.aws/credentials
-```
+## Prerequisites:
 
-### Install Pulumi CLI:
+### Install AWS CDK CLI
 
-`$ brew install pulumi`
+`$ npm install -g aws-cdk`
 
-### Login to local directory
+### Create new CDK application
 
-`$ pulumi login file://$(pwd)`
+`$ cdk init app --language=typescript`
+`$ npx npm-check-updates -u`
+`$ npm install`
+`$ cdk bootstrap`
 
-### create new Pulumi stack
+## Useful commands
 
-`$ pulumi new aws-typescript --name polis-fargate-deployment --force`
-
-Set passphrases to be empty...
+ * `npm run build`   compile typescript to js
+ * `npm run watch`   watch for changes and compile
+ * `npm run test`    perform the jest unit tests
+ * `cdk deploy`      deploy this stack to your default AWS account/region
+ * `cdk diff`        compare deployed stack with current state
+ * `cdk synth`       emits the synthesized CloudFormation template

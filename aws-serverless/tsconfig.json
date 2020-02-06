@@ -1,18 +1,23 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "outDir": "bin",
-    "target": "es2016",
+    "target":"ES2018",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "pretty": true,
-    "noFallthroughCasesInSwitch": true,
+    "lib": ["es2018"],
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noImplicitReturns": true,
-    "forceConsistentCasingInFileNames": true
+    "noFallthroughCasesInSwitch": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization":false,
+    "typeRoots": ["./node_modules/@types"]
   },
-  "files": [
-    "index.ts"
-  ]
+  "exclude": ["cdk.out"]
 }
