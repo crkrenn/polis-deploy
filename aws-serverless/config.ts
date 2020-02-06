@@ -5,7 +5,7 @@ export default {
   },
   docker: {
     postgres: {
-      pwd: "oiPorg3Nrz0yqDLE",
+      // pwd: "oiPorg3Nrz0yqDLE",
     },
     server: {
 

@@ -41,17 +41,17 @@ const dbImg = awsx.ecs.Image.fromDockerBuild("polis-db-img", {
   }
 });
 
-const serverImg = awsx.ecs.Image.fromDockerBuild("polis-server-img", {
-  context: "./polisServer",
-  args: {
-    ...config.docker.server,
-    host: serverWeb.endpoint.hostname,
-    static_files_host: clientWeb.endpoint.hostname,
-    static_files_admin_host: adminWeb.endpoint.hostname,
-    postgres_host: dbPort.endpoint.hostname,
-    postgres_pwd: config.docker.postgres.pwd,
-  }
-});
+// const serverImg = awsx.ecs.Image.fromDockerBuild("polis-server-img", {
+//   context: "./polisServer",
+//   args: {
+//     ...config.docker.server,
+//     host: serverWeb.endpoint.hostname,
+//     static_files_host: clientWeb.endpoint.hostname,
+//     static_files_admin_host: adminWeb.endpoint.hostname,
+//     postgres_host: dbPort.endpoint.hostname,
+//     postgres_pwd: config.docker.postgres.pwd,
+//   }
+// });
 
 // const adminImg = awsx.ecs.Image.fromDockerBuild("polis-admin-img", { context: "./polisClientAdmin" });
 // const clientImg = awsx.ecs.Image.fromDockerBuild("polis-client-img", { context: "./polisClientParticipation" });
@@ -70,18 +70,18 @@ const databaseService = new awsx.ecs.FargateService("polis-db-srv", {
   },
 });
 
-const serverService = new awsx.ecs.FargateService("polis-server-srv", {
-  cluster,
-  desiredCount: 1,
-  taskDefinitionArgs: {
-    container: {
-      image: serverImg,
-      cpu: 512,
-      memory: 2048,
-      portMappings: [serverWeb],
-    },
-  },
-});
+// const serverService = new awsx.ecs.FargateService("polis-server-srv", {
+//   cluster,
+//   desiredCount: 1,
+//   taskDefinitionArgs: {
+//     container: {
+//       image: serverImg,
+//       cpu: 512,
+//       memory: 2048,
+//       portMappings: [serverWeb],
+//     },
+//   },
+// });
 
 // const adminService = new awsx.ecs.FargateService("polis-admin-srv", {
 //   cluster,
