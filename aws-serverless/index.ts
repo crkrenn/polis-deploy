@@ -20,8 +20,6 @@ const dbService = new ecsPatterns.NetworkLoadBalancedFargateService(stack, "poli
   cpu: 512,
   memoryLimitMiB: 2048,
 
-  cloudMapOptions: { },
-
   taskImageOptions: {
     containerName: "postgres",
     containerPort: config.postgres.port,
