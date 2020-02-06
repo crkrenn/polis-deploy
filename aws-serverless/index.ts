@@ -54,7 +54,7 @@ const serverService = new ecsPatterns.ApplicationLoadBalancedFargateService(stac
         // host: serverWeb.endpoint.hostname,
         // static_files_host: clientWeb.endpoint.hostname,
         // static_files_admin_host: adminWeb.endpoint.hostname,
-        postgres_host: dbService.loadBalancer.loadBalancerDnsName,
+        // postgres_host: dbService.loadBalancer.loadBalancerDnsName,
         postgres_pwd: config.postgres.args.pwd,
       }
     }),
