@@ -1,27 +1,13 @@
 export default {
-  postgres: {
-    port: 5432,
-    args: {
-      db: "polis-dev",
-      uid: "postgres",
+  cluster: {
+    name: "polis-cluster",
+    description: "Polis Fargate Cluster",
+  },
+  docker: {
+    postgres: {
       pwd: "oiPorg3Nrz0yqDLE",
-    }
-  },
-  server: {
-    port: 5000,
-    args: {
-
-    }
-  },
-  client: {
-    port: 5001,
-    args: {
-
-    }
-  },
-  admin: {
-    port: 5002,
-    args: {
+    },
+    server: {
 
     }
   },
