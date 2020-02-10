@@ -2,6 +2,8 @@ export default {
   postgres: {
     port: 5432,
     args: {
+      db: "polis-dev",
+      uid: "postgres",
       pwd: "oiPorg3Nrz0yqDLE",
     }
   },
