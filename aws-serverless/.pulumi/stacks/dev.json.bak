@@ -4,7 +4,7 @@
         "stack": "dev",
         "latest": {
             "manifest": {
-                "time": "2020-02-10T21:08:46.459003+04:00",
+                "time": "2020-02-11T18:21:33.668219+04:00",
                 "magic": "2fa3bc1755d1a62be672741ac50e35ff11e2bcd6407dc7aae4028509c97b509b",
                 "version": "v1.10.1"
             },
@@ -18,7 +18,7 @@
                 {
                     "urn": "urn:pulumi:dev::polis-fargate-deployment::pulumi:providers:aws::default_1_20_0",
                     "custom": true,
-                    "id": "4b73d4a8-41da-494a-b0bc-cae544a92cc6",
+                    "id": "9ec12e5f-e798-4a19-9bcb-b30b6b7c2acf",
                     "type": "pulumi:providers:aws",
                     "inputs": {
                         "region": "us-east-1",
@@ -35,7 +35,7 @@
                     "resource": {
                         "urn": "urn:pulumi:dev::polis-fargate-deployment::pulumi:providers:aws::default_1_20_0",
                         "custom": true,
-                        "id": "4b73d4a8-41da-494a-b0bc-cae544a92cc6",
+                        "id": "9ec12e5f-e798-4a19-9bcb-b30b6b7c2acf",
                         "type": "pulumi:providers:aws",
                         "inputs": {
                             "region": "us-east-1",

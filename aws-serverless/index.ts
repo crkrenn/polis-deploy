@@ -111,6 +111,6 @@ const serverService = new awsx.ecs.FargateService("polis-server", {
 
 // export public endpoints
 export const dbEndpoint = dbPort.endpoint.hostname;
-export const serverUrl = `http://${serverWeb.endpoint}:${serverWeb.endpoint.port}`;
-export const adminUrl = `http://${adminWeb.endpoint}:${adminWeb.endpoint.port}`;
-export const clientUrl = `http://${clientWeb.endpoint}:${clientWeb.endpoint.port}`;
+export const serverUrl = `http://${serverWeb.endpoint.hostname}:${serverWeb.endpoint.port}`;
+export const adminUrl = `http://${adminWeb.endpoint.hostname}:${adminWeb.endpoint.port}`;
+export const clientUrl = `http://${clientWeb.endpoint.hostname}:${clientWeb.endpoint.port}`;
