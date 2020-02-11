@@ -1,0 +1,53 @@
+version: "2.2"
+
+services:
+  db:
+    build:
+      context: ./polisDatabase
+    ports:
+      - 5432:5432
+    networks:
+      - polis
+
+  server:
+    build:
+      context: ./polisServer
+      args:
+        host: server
+        static_files_host: client
+        static_files_admin_host: admin
+        postgres_host: db
+    depends_on:
+      - db
+    ports:
+      - 5000:5000
+    networks:
+      - polis
+
+  client:
+    build:
+      context: ./polisClientParticipation
+    depends_on:
+      - db
+      - server
+    ports:
+      - 5001:5001
+    networks:
+      - polis
+
+  admin:
+    build:
+      context: ./polisClientAdmin
+    depends_on:
+      - db
+      - server
+    ports:
+      - 5002:5002
+    networks:
+      - polis
+
+networks:
+  polis:
+    driver: bridge
+    ipam:
+      driver: default
