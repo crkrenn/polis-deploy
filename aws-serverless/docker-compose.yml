@@ -10,6 +10,8 @@ services:
       - polis
 
   server:
+    env_file:
+      - env_dev
     build:
       context: ./polisServer
       args:
@@ -25,6 +27,8 @@ services:
       - polis
 
   client:
+    env_file:
+      - env_dev
     build:
       context: ./polisClientParticipation
     depends_on:
@@ -36,6 +40,8 @@ services:
       - polis
 
   admin:
+    env_file:
+      - env_dev
     build:
       context: ./polisClientAdmin
     depends_on:
