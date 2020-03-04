@@ -1,13 +1,13 @@
 version: "2.2"
 
 services:
-  db:
-    build:
-      context: ./polisDatabase
-    ports:
-      - 5432:5432
-    networks:
-      - polis
+  # db:
+  #   build:
+  #     context: ./polisDatabase
+  #   ports:
+  #     - 5432:5432
+  #   networks:
+  #     - polis
 
   server:
     env_file:
@@ -18,9 +18,9 @@ services:
         host: server
         static_files_host: client
         static_files_admin_host: admin
-        postgres_host: db
-    depends_on:
-      - db
+#        postgres_host: db
+#    depends_on:
+#      - db
     ports:
       - 5000:5000
     networks:
@@ -32,7 +32,7 @@ services:
     build:
       context: ./polisClientParticipation
     depends_on:
-      - db
+#     - db
       - server
     ports:
       - 5001:5001
@@ -45,7 +45,7 @@ services:
     build:
       context: ./polisClientAdmin
     depends_on:
-      - db
+#     - db
       - server
     ports:
       - 5002:5002
