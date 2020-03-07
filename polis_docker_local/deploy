@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # choose SUDO=sudo if sudo is needed to run docker-compose (e.g. some ubuntu installations)
 # choose SUDO="" if sudo is not needed
-SUDO=sudo
-#SUDO=""
+#SUDO=sudo
+SUDO=""
 # clone necessary repos
 BRANCH=docker_dgps
 (cd ../..; git clone https://github.com/crkrenn/polis-deploy)
