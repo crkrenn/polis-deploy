@@ -4,7 +4,7 @@
 #SUDO=sudo
 SUDO=""
 # clone necessary repos
-BRANCH=docker_dgps
+BRANCH=docker_dgps_B
 (cd ../..; git clone https://github.com/crkrenn/polis-deploy)
 REPO=polisServer
 (cd ../..; git clone https://github.com/crkrenn/${REPO})
