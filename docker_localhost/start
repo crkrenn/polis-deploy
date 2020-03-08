@@ -20,6 +20,10 @@ sed -i 's|{{SERVICE_URL}}|http://localhost:5000|g' polis.config.js
 /bin/cp -f polis.config.js ../polisClientAdmin
 /bin/cp -f polis.config.js ../polisClientParticipation
 /bin/cp ../polisServer/postgres/db_setup_draft.sql ../polisDatabase/postgres
+# remove temporary files
+/bin/rm -f polis.config.js
+/bin/rm -f env_dev
+# build and run
 $SUDO bash -c "(cd ../polisServer; docker container kill polis-server; docker container rm polis-server; docker image build -t polis-server:1.0 .; docker container run --env-file=env_dev  --network='host' --publish 5000:5000 --detach --name polis-server polis-server:1.0)"
 $SUDO bash -c "(cd ../polisClientParticipation; docker container kill polis-client-participation; docker container rm polis-client-participation; docker image build -t polis-client-participation:1.0 .; docker container run --env-file=env_dev  --network='host' --publish 5001:5001 --detach --name polis-client-participation polis-client-participation:1.0)"
 $SUDO bash -c "(cd ../polisClientAdmin; docker container kill polis-client-admin; docker container rm polis-client-admin; docker image build -t polis-client-admin:1.0 .; docker container run --env-file=env_dev  --network='host' --publish 5002:5002 --detach --name polis-client-admin polis-client-admin:1.0)"
