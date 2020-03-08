@@ -2,26 +2,9 @@
 # use ./<script> sudo if sudo is needed to run docker-compose (e.g. some ubuntu installations)
 # use ./<script> if sudo is not needed
 SUDO=$1
-# clone necessary repos
-BRANCH=docker_dgps_B
-(cd ../..; git clone https://github.com/crkrenn/polis-deploy)
-REPO=polisServer
-(cd ../..; git clone https://github.com/crkrenn/${REPO})
-(cd ../../${REPO}; git checkout ${BRANCH})
-REPO=polisClientAdmin
-(cd ../..; git clone https://github.com/crkrenn/${REPO})
-(cd ../../${REPO}; git checkout ${BRANCH})
-REPO=polisClientParticipation
-(cd ../..; git clone https://github.com/crkrenn/${REPO})
-(cd ../../${REPO}; git checkout ${BRANCH})
-# copy necessary configuration files
-cp polis.config_docker.js polisClientAdmin/polis.config.js
-cp polis.config_docker.js polisClientParticipation/polis.config.js
-cp polisServer/postgres/db_setup_draft.sql polisDatabase/postgres
-${SUDO} ./dc-stop.sh
-${SUDO} ./dc-start.sh
-${SUDO} docker-compose logs -f
-
+$SUDO bash -c "(cd ../polisServer; docker container kill polis-server; docker container rm polis-server)"
+$SUDO bash -c "(cd ../polisClientParticipation; docker container kill polis-client-participation; docker container rm polis-client-participation)"
+$SUDO bash -c "(cd ../polisClientAdmin; docker container kill polis-client-admin; docker container rm polis-client-admin)"
 
 
 
