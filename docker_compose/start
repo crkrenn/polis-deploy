@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# use ./<script> sudo if sudo is needed to run docker-compose (e.g. some ubuntu installations)
+# use ./<script> if sudo is not needed
+SUDO=$1
+# copy configuration file templates
+/bin/cp -f ../config/*template .
+/bin/mv -f env_dev_template env_dev
+/bin/mv -f polis.config.js_template polis.config.js
+# modify configuration files if needed
+sed -i 's/{{CLIENT_HOST}}/client/g' env_dev
+sed -i 's/{{ADMIN_HOST}}/admin/g' env_dev
+sed -i 's/{{CLIENT_HOST}}/client/g' polis.config.js
+sed -i 's/{{ADMIN_HOST}}/admin/g' polis.config.js
+sed -i 's/{{USE_DOCKER_COMPOSE}}/true/g' env_dev
+sed -i 's|{{DATABASE_URL}}|postgres://postgres:postgres@db:5432/polis-dev|g' env_dev
+sed -i 's|{{SERVICE_URL}}|http://server:5000|g' polis.config.js
+# copy configuration files to code directories
+/bin/cp -f env_dev ../polisServer
+/bin/cp -f env_dev ../polisClientAdmin
+/bin/cp -f env_dev ../polisClientParticipation
+/bin/cp -f polis.config.js ../polisClientAdmin
+/bin/cp -f polis.config.js ../polisClientParticipation
+/bin/cp ../polisServer/postgres/db_setup_draft.sql ../polisDatabase/postgres
+# remove temporary files
+/bin/rm -f polis.config.js
+
+# build and run
+$SUDO docker-compose up --build -d

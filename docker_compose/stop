@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# use ./<script> sudo if sudo is needed to run docker-compose (e.g. some ubuntu installations)
+# use ./<script> if sudo is not needed
+SUDO=$1
+# stop containers
+$SUDO docker-compose kill
+$SUDO docker-compose rm -f

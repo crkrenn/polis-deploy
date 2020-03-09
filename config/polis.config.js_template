@@ -2,6 +2,8 @@
 module.exports = {
 
   domainWhitelist: [
+    "{{POLIS_CONFIG_DOMAIN_WHITELIST_ITEM_01}}",
+    "{{POLIS_CONFIG_DOMAIN_WHITELIST_ITEM_02}}",
     "^localhost$",
     "^server$",
     "^client$",

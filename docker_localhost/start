@@ -11,6 +11,7 @@ sed -i 's/{{CLIENT_HOST}}/localhost/g' env_dev
 sed -i 's/{{ADMIN_HOST}}/localhost/g' env_dev
 sed -i 's/{{CLIENT_HOST}}/localhost/g' polis.config.js
 sed -i 's/{{ADMIN_HOST}}/localhost/g' polis.config.js
+sed -i 's/{{USE_DOCKER_COMPOSE}}/false/g' env_dev
 sed -i 's|{{DATABASE_URL}}|postgres://postgres:postgres@localhost:5432/polis-dev|g' env_dev
 sed -i 's|{{SERVICE_URL}}|http://localhost:5000|g' polis.config.js
 # copy configuration files to code directories
@@ -23,6 +24,9 @@ sed -i 's|{{SERVICE_URL}}|http://localhost:5000|g' polis.config.js
 # remove temporary files
 /bin/rm -f polis.config.js
 /bin/rm -f env_dev
+# remove previous instances of node & java
+$SUDO pkill node
+$SUDO pkill java
 # build and run
 $SUDO bash -c "(cd ../polisServer; docker container kill polis-server; docker container rm polis-server; docker image build -t polis-server:1.0 .; docker container run --env-file=env_dev  --network='host' --publish 5000:5000 --detach --name polis-server polis-server:1.0)"
 $SUDO bash -c "(cd ../polisClientParticipation; docker container kill polis-client-participation; docker container rm polis-client-participation; docker image build -t polis-client-participation:1.0 .; docker container run --env-file=env_dev  --network='host' --publish 5001:5001 --detach --name polis-client-participation polis-client-participation:1.0)"

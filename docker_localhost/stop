@@ -5,6 +5,10 @@ SUDO=$1
 $SUDO bash -c "(cd ../polisServer; docker container kill polis-server; docker container rm polis-server)"
 $SUDO bash -c "(cd ../polisClientParticipation; docker container kill polis-client-participation; docker container rm polis-client-participation)"
 $SUDO bash -c "(cd ../polisClientAdmin; docker container kill polis-client-admin; docker container rm polis-client-admin)"
+# remove previous instances of node & java
+$SUDO pkill node
+$SUDO pkill java
+
 
 
 

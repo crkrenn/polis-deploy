@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# use ./<script> sudo if sudo is needed to run docker-compose (e.g. some ubuntu installations)
+# use ./<script> if sudo is not needed
+SUDO=$1
+# clone necessary repos
+BRANCH=docker_dgps_C
+REPO=polisServer
+(cd ../..; git clone https://github.com/crkrenn/${REPO})
+(cd ../../${REPO}; git checkout ${BRANCH}; git pull)
+REPO=polisClientAdmin
+(cd ../..; git clone https://github.com/crkrenn/${REPO})
+(cd ../../${REPO}; git checkout ${BRANCH}; git pull)
+REPO=polisClientParticipation
+(cd ../..; git clone https://github.com/crkrenn/${REPO})
+(cd ../../${REPO}; git checkout ${BRANCH}; git pull)
+
+
+
+
