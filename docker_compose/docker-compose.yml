@@ -9,64 +9,49 @@ services:
     expose:
       - 5432
     networks:
-      polis:
-        ipv4_address: 192.168.1.4
-#    networks:
-#      - polis
+      - polis
 
   server:
     env_file:
       - env_dev
     build:
       context: ../polisServer
-#      args:
-#        host: server
-#        static_files_host: client
-#        static_files_admin_host: admin
-#        postgres_host: db
     depends_on:
       - db
     ports:
       - 5000:5000
     networks:
-      polis:
-        ipv4_address: 192.168.1.6
-#    networks:
-#      - polis
+      - polis
+
+  math:
+    env_file:
+      - env_dev
+    build:
+      context: ../polisMath
+    depends_on:
+      - db
+    networks:
+      - polis
 
   client:
     env_file:
       - env_dev
     build:
       context: ../polisClientParticipation
-#    depends_on:
-#     - db
-#      - server
-#    ports:
-#      - 5001:5001
     expose:
       - 5001
     networks:
-      polis:
-        ipv4_address: 192.168.1.2
-#    networks:
-#      - polis
+      - polis
 
   admin:
     env_file:
       - env_dev
     build:
       context: ../polisClientAdmin
-#    depends_on:
-#     - db
-#      - server
-#    ports:
-#      - 5002:5002
     expose:
       - 5002
     networks:
-      polis:
-        ipv4_address: 192.168.1.3
+      - polis
 
 # networks:
 #   polis:
@@ -79,5 +64,3 @@ networks:
     external: false
     ipam:
       driver: default
-      config:
-        - subnet: 192.168.0.0/16

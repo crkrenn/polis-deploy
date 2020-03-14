@@ -3,7 +3,7 @@
 # use ./<script> if sudo is not needed
 SUDO=$1
 # clone necessary repos
-BRANCH=docker_dgps_C
+BRANCH=dockerize_dgps
 REPO=polisServer
 (cd ../..; git clone https://github.com/crkrenn/${REPO})
 (cd ../../${REPO}; git checkout ${BRANCH}; git pull)
@@ -11,6 +11,9 @@ REPO=polisClientAdmin
 (cd ../..; git clone https://github.com/crkrenn/${REPO})
 (cd ../../${REPO}; git checkout ${BRANCH}; git pull)
 REPO=polisClientParticipation
+(cd ../..; git clone https://github.com/crkrenn/${REPO})
+(cd ../../${REPO}; git checkout ${BRANCH}; git pull)
+REPO=polisMath
 (cd ../..; git clone https://github.com/crkrenn/${REPO})
 (cd ../../${REPO}; git checkout ${BRANCH}; git pull)
 
