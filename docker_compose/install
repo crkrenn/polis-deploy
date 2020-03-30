@@ -3,7 +3,7 @@
 # use ./<script> if sudo is not needed
 SUDO=$1
 # clone necessary repos
-BRANCH=dockerize_dgps
+BRANCH=feature/docker_compose_localhost
 REPO=polisServer
 (cd ../..; git clone https://github.com/crkrenn/${REPO})
 (cd ../../${REPO}; git checkout ${BRANCH}; git pull)
