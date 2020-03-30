@@ -13,9 +13,10 @@ REPO=polisClientAdmin
 REPO=polisClientParticipation
 (cd ../..; git clone https://github.com/crkrenn/${REPO})
 (cd ../../${REPO}; git checkout ${BRANCH}; git pull)
-REPO=polisMath
-(cd ../..; git clone https://github.com/crkrenn/${REPO})
-(cd ../../${REPO}; git checkout ${BRANCH}; git pull)
+#REPO=polisMath
+#(cd ../..; git clone https://github.com/crkrenn/${REPO})
+#(cd ../../${REPO}; git checkout ${BRANCH}; git pull)
+
 
 
 

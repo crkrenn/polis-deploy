@@ -23,15 +23,15 @@ services:
     networks:
       - polis
 
-  math:
-    env_file:
-      - env_dev
-    build:
-      context: ../polisMath
-    depends_on:
-      - db
-    networks:
-      - polis
+#   math:
+#     env_file:
+#       - env_dev
+#     build:
+#       context: ../polisMath
+#     depends_on:
+#       - db
+#     networks:
+#       - polis
 
   client:
     env_file:
