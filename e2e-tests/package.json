@@ -1,0 +1,26 @@
+{
+  "name": "polis-puppeteer",
+  "description": "Polis automated UI tests",
+  "author": "David Nadaraia <david.nadaraia@gmail.com>",
+  "version": "1.0.0",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "polis:start": "cd ../docker_compose && . start && cd ../e2e-tests",
+    "polis:stop": "cd ../docker_compose && . stop && cd ../e2e-tests",
+    "polis:restart": "npm run polis:stop && npm run polis:start",
+    "test": "jest --runInBand --silent=false",
+    "start": "npm test"
+  },
+  "jest": {
+    "preset": "jest-puppeteer"
+  },
+  "dependencies": {
+    "@types/jest": "^25.2.1",
+    "faker": "^4.1.0",
+    "jest": "^25.3.0",
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^3.0.0",
+    "puppeteer-core": "^3.0.0"
+  }
+}

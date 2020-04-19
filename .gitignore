@@ -1,2 +1,5 @@
 *#
 *~
+env_*
+polis.config.*
+node_modules
